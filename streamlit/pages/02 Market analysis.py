@@ -1,5 +1,4 @@
 import streamlit as st
-from connect import cursor, conn
 import matplotlib.pyplot as plt
 import matplotlib
 import seaborn as sns

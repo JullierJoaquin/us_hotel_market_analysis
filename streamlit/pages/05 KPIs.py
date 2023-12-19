@@ -1,5 +1,4 @@
 import streamlit as st
-from connect import cursor, conn
 import matplotlib.pyplot as plt
 import matplotlib
 import seaborn as sns
@@ -28,14 +27,6 @@ st.set_page_config(
 )
 
 
-
-
-
-
-
-
-
-
 df_positive_reviews = df_reviews[df_reviews['sentiment'] > 0]
 
 grouped_data = df_reviews.groupby(pd.Grouper(key='date', freq='3M')).agg(
@@ -62,14 +53,6 @@ fig = px.line(grouped_data, x=grouped_data.index, y='PRP',
 fig.add_scatter(x=projected_data.index, y=projected_data['PRP'], mode='lines', line=dict(dash='dash'),
                 #name=f'Proyección ({growth_rate*100}% Crecimiento por Trimestre hasta {target_percentage}%)'
                 )
-
-
-
-
-
-
-
-
 
 
 
