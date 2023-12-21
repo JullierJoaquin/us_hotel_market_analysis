@@ -1,4 +1,6 @@
 import streamlit as st
+
+import os
 import numpy as np
 import pandas as pd
 
@@ -27,9 +29,10 @@ st.markdown("## US hotel market analysis:")
 st.markdown("***") # Línea de división     
 st.markdown("Description...")
 
-st.markdown("usa_states")
-usa_states = pd.read_csv("usa_states.csv")
-usa_states
+current_directory = os.path.dirname(os.path.realpath(__file__))
+file_path = os.path.join(current_directory, "usa_states.csv")
+usa_states = pd.read_csv(file_path)
+st.dataframe(usa_states)
 
 st.markdown("usa_cities")
 usa_cities = pd.read_csv("usa_cities.csv")
