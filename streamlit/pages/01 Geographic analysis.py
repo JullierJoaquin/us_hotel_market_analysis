@@ -13,7 +13,6 @@ warnings.filterwarnings("ignore")
 # DATA IMPORTATION
     
 usa_states = pd.read_csv("../files/data/usa_states.csv")
-
 usa_cities = pd.read_csv("../files/data/usa_cities.csv")
 
 clients = pd.read_csv("../files/data/usa_clients.csv", index_col=0)
@@ -76,25 +75,21 @@ hotel_count_by_city = pd.merge(hotel_count_by_city, usa_cities[['city', 'state_i
 hotel_count_by_city = hotel_count_by_city.sort_values(by=['hotel_count'], ascending=False)
 
 
-# GRAFICOS
+# VISUALIZATIONS
 
 # Scatterplot map
 mapscatter_cities = px.scatter_geo(usa_cities, lat="latitude", lon="longitude", size="population",
     color_discrete_sequence=['black'], title="Geographic distribution",
-    width=1000, height=900,
-    scope="usa")
-mapscatter_cities.update_layout(title_x=0.7)
+    width=1000, height=900, scope="usa")
 mapscatter_cities.update_traces(marker=dict(line=dict(width=0)), opacity=0.25)
-mapscatter_cities.update_layout(title_x=0.7, title=dict(text='Geographic distribution', font=dict(color='black')))
+mapscatter_cities.update_layout(title=dict(text='Geographic distribution', font=dict(color='black')))
 mapscatter_hotels = px.scatter_geo(hotel_count_by_city, lat="latitude", lon="longitude", size="hotel_count",
     color_discrete_sequence=[f"{color_palette['hotels_color']}"],
-    width=1000, height=900,
-    scope="usa")
+    width=1000, height=900, scope="usa")
 mapscatter_hotels.update_traces(marker=dict(line=dict(width=0)))
 mapscatter_attractions = px.scatter_geo(usa_attractions, lat="latitude", lon="longitude", size="n_reviews",
     color_discrete_sequence=[f"{color_palette['attractions_color']}"],
-    width=1000, height=900,
-    scope="usa")
+    width=1000, height=900, scope="usa")
 mapscatter_attractions.update_traces(marker=dict(line=dict(width=0)))
 geographic_analyysis_map = mapscatter_cities
 for trace in mapscatter_hotels.data:
@@ -117,11 +112,11 @@ hotel_count_by_city_barchart = px.bar(x=hotel_count_by_city.head(10).city, y=hot
 
 # DIAGRAMATION
 
-col1, col2 = st.columns((2, 5))
+col1, col2 = st.columns((5, 2))
 with col1:
+    st.plotly_chart(geographic_analyysis_map, use_container_width=True)
+
+with col2:
+   
     st.plotly_chart(bar_chart, use_container_width=True)
     st.plotly_chart(hotel_count_by_city_barchart, use_container_width=True)
-
-    
-with col2:
-    st.plotly_chart(geographic_analyysis_map, use_container_width=True)

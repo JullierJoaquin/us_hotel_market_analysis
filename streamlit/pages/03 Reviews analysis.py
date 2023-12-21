@@ -67,28 +67,22 @@ average_sentiment = filtered_clients_reviews['sentiment'].mean()
 filtered_clients_reviews['useful'] = 0.1
 
 
-# GRAFICAR
-average_sentiment = 0.55
-# Crear el gráfico de torta con la paleta de colores específica
-if average_sentiment > 0.5:
-    lista_de_colores = ["#689F38", "#8BC34A", "#9CCC65", "#AED581", "#C5E1A5"]
-elif 0.5 > average_sentiment > 0:
-    lista_de_colores = ["#FFB300", "#FFCA28", "#FFD54F", "#FFE082", "#FFFFFF"]
-elif average_sentiment < 0:
-    lista_de_colores = ["#3C0000", "#670010", "#960018", "#CB4C46", "#FF8478"]
+lista_de_colores = ["#405c61", "#4a6a71", "#547980", "#5E888F", "#65959d"]
 
 
 # Group by month and calculate the average sentiment for each month
 filtered_clients_reviews['month'] = filtered_clients_reviews['date'].dt.to_period('M').astype(str)
 monthly_average_sentiment = filtered_clients_reviews.groupby('month')['sentiment'].mean().reset_index()
 
+
+
 # Create the scatter plot
-custom_color_scale = ['#D30F02', '#F7C20E', '#648813']
+custom_color_scale = ['#C55659', '#547980']
 scatter_plot = px.scatter(filtered_clients_reviews, x="date", y="sentiment",
                           title='Booking reviews analysis:',
                           color='sentiment',
                           color_continuous_scale=custom_color_scale,
-                          size='useful',  # Add the column you want to use for bubble size
+                          size='useful',
                           opacity=0.75,
                           height=900,
                           size_max=10)
@@ -123,7 +117,7 @@ torta_stay.update_traces(textinfo='label')
 
 
 # STRUCTURE
-
+filtered_clients_reviews
 col1, col2, col3 = st.columns((3, 1, 1))
 with col3:
     st.text("")
@@ -135,26 +129,3 @@ with col2:
     st.plotly_chart(torta_isamerican, use_container_width=True)
 with col1:
     st.plotly_chart(scatter_plot, use_container_width=True)
-
-
-
-col1, col2 = st.columns((3, 3))
-with col1:
-    st.text("")
-    st.text("")
-    st.text("")
-    df_copy = filtered_clients_reviews.copy()
-    resumenes_texto = ' '.join(df_copy['review'][df_copy['sentiment'] > 0.25].dropna())
-    wordcloud = WordCloud(width=800, height=400, background_color='white', colormap='Greens').generate(resumenes_texto)
-    wordcloud_image = wordcloud.to_image()
-    st.image(wordcloud_image)
-with col2:
-    st.text("")
-    st.text("")
-    st.text("")
-    df_copy = filtered_clients_reviews.copy()
-    resumenes_texto = ' '.join(df_copy['review'][df_copy['sentiment'] < 0.25].dropna())
-    wordcloud = WordCloud(width=800, height=400, background_color='white', colormap='Reds').generate(resumenes_texto)
-    wordcloud_image = wordcloud.to_image()
-    st.image(wordcloud_image)
-
