@@ -28,7 +28,7 @@ st.markdown("***") # Línea de división
 st.markdown("Description...")
 
 st.markdown("usa_states")
-usa_states = pd.read_csv("../files/data/usa_states.csv")
+usa_states = pd.read_csv("data/usa_states.csv")
 usa_states
 
 st.markdown("usa_cities")
