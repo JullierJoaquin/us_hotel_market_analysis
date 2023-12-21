@@ -31,7 +31,11 @@ st.markdown("Description...")
 
 current_directory = os.path.dirname(os.path.realpath(__file__))
 file_path = os.path.join(current_directory, "usa_states.csv")
-usa_states = pd.read_csv(file_path)
+if os.path.exists(file_path):
+    usa_states = pd.read_csv(file_path)
+    st.dataframe(usa_states)
+else:
+    st.error(f"El archivo {file_path} no se pudo encontrar.")
 st.dataframe(usa_states)
 
 st.markdown("usa_cities")
