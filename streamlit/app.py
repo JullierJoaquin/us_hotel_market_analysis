@@ -30,8 +30,14 @@ st.markdown("***") # Línea de división
 st.markdown("Description...")
 
 st.markdown("usa_states")
-usa_states = pd.read_csv("usa_states.csv")
-usa_states
+file_path = "/mount/src/us_hotel_market_analysis/streamlit/usa_states.csv"
+if os.path.exists(file_path):
+    usa_states = pd.read_csv("usa_states.csv")
+    st.dataframe(usa_states)
+    pass
+else:
+    print(f"El archivo {file_path} no se pudo encontrar.")
+
 
 st.markdown("usa_cities")
 usa_cities = pd.read_csv("usa_cities.csv")
