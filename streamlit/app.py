@@ -40,7 +40,7 @@ if os.path.exists(file_path):
     print(f"El archivo {file_path} existe.")
 else:
     print(f"El archivo {file_path} no existe.")
-usa_states
+
 
 import os
 
@@ -50,7 +50,7 @@ if os.path.exists(file_path):
     print(f"El archivo {file_path} existe.")
 else:
     print(f"El archivo {file_path} no existe.")
-usa_states
+
 
 
 
@@ -70,6 +70,6 @@ usa_attractions
 
 st.markdown("hotels")
 hotels = pd.read_csv("usa_hotels.csv", index_col=0)
-hotels = pd.merge(hotels, usa_states[['state', 'state_id']], on='state', how="left")
+#hotels = pd.merge(hotels, usa_states[['state', 'state_id']], on='state', how="left")
 hotels = pd.merge(hotels, usa_cities[['city', 'state_id', 'latitude', 'longitude', 'population']], on=['state_id', 'city'], how='left')
 hotels
