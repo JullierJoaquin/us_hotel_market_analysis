@@ -29,9 +29,31 @@ st.markdown("## US hotel market analysis:")
 st.markdown("***") # Línea de división     
 st.markdown("Description...")
 
-st.markdown("usa_states")
-usa_states = pd.read_csv("usa_states.csv")
+
+
+
+
+
+file_path = "usa_states.csv"
+
+if os.path.exists(file_path):
+    print(f"El archivo {file_path} existe.")
+else:
+    print(f"El archivo {file_path} no existe.")
 usa_states
+
+import os
+
+file_path = "data/usa_states.csv"
+
+if os.path.exists(file_path):
+    print(f"El archivo {file_path} existe.")
+else:
+    print(f"El archivo {file_path} no existe.")
+usa_states
+
+
+
 
 st.markdown("usa_cities")
 usa_cities = pd.read_csv("usa_cities.csv")
