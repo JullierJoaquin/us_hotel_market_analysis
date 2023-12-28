@@ -37,7 +37,9 @@ st.markdown("Description...")
 file_path = "usa_states.csv"
 
 if os.path.exists(file_path):
-    print(f"El archivo {file_path} existe.")
+    st.markdown(f"El archivo {file_path} existe.")
+    usa_cities = pd.read_csv(file_path)
+    usa_cities
 else:
     print(f"El archivo {file_path} no existe.")
 
@@ -47,7 +49,9 @@ import os
 file_path = "data/usa_states.csv"
 
 if os.path.exists(file_path):
-    print(f"El archivo {file_path} existe.")
+    st.markdown(f"El archivo {file_path} existe.")
+    usa_cities = pd.read_csv(file_path)
+    usa_cities
 else:
     print(f"El archivo {file_path} no existe.")
 
