@@ -41,7 +41,8 @@ if os.path.exists(file_path):
     usa_cities = pd.read_csv(file_path)
     usa_cities
 else:
-    print(f"El archivo {file_path} no existe.")
+    st.markdown(f"El archivo {file_path} no existe.")
+
 
 
 import os
@@ -53,7 +54,7 @@ if os.path.exists(file_path):
     usa_cities = pd.read_csv(file_path)
     usa_cities
 else:
-    print(f"El archivo {file_path} no existe.")
+    st.markdown(f"El archivo {file_path} no existe.")
 
 
 
